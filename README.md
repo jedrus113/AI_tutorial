@@ -1,1 +1,1 @@
-# AI_tutorial
+# AI_tutorial from yt about creating  neutral network that predict score on test based on hours you sleep and learn

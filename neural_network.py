@@ -2,7 +2,7 @@ import numpy as np
 
 
 class Neural_Network(object):
-    def __init(self):
+    def __init__(self):
         #Define Hyperparameters
         self.inputLayerSize = 2
         self.outputLayerSize = 1
@@ -16,7 +16,7 @@ class Neural_Network(object):
         #Propagate inputs though network
         self.z2 = np.dot(X, self.W1)
         self.a2 = self.sigmoid(self.z2)
-        self.x3 = np.dot(self.a2, self.W2)
+        self.z3 = np.dot(self.a2, self.W2)
         yHat = self.sigmoid(self.z3)
 
 

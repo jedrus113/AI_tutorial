@@ -32,6 +32,10 @@ class Neural_Network(object):
         yHat = self.sigmoid(self.z3)
         return yHat
 
+    def sigmoidPrime(self, z):
+        #Derivative of Sigmoid Fucntion
+        return np.exp(-z)/((1+np.exp(-z))**2)
+
     def sigmoid(self, z):
         #Apply sigmoid activation function to scalar, vector, or matrix
         return 1/(1+np.exp(-z))

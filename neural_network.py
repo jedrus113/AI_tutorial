@@ -19,7 +19,7 @@ class Neural_Network(object):
         delta3 = np.multiply(-(y-yhat), self.sigmoidPrime(self.z3))
         dJdW2 = np.dot(self.a2.T, delta3)
 
-        delta2 = np.dot(delta3, self.W2.T)*self.sigmoidPrime(self.x2)
+        delta2 = np.dot(delta3, self.W2.T)*self.sigmoidPrime(self.z2)
         dJdW1 = np.dot(X.T, delta2)
 
         return dJdW1, dJdW2

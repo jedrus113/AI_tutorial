@@ -12,12 +12,24 @@ class Neural_Network(object):
         self.W1 = np.random.randn(self.inputLayerSize, self.hiddenLayerSize)
         self.W2 = np.random.randn(self.hiddenLayerSize, self.outputLayerSize)
 
+    def constFunctionPrime(self, X, y):
+        #Compute derivative with respect to W1 and W2
+        yhat = self.forward(X)
+
+        delta3 = np.multiply(-(y-yhat), self.sigmoidPrime(self.z3))
+        dJdW2 = np.dot(self.a2.T, delta3)
+
+        delta2 = np.dot(delta3, self.W2.T)*self.sigmoidPrime(self.x2)
+        dJdW1 = np.dot(X.T, delta2)
+
+        return dJdW1, dJdW2
+
     def forward(self, X):
         #Propagate inputs though network
-        z2 = np.dot(X, self.W1)
-        a2 = self.sigmoid(z2)
-        z3 = np.dot(a2, self.W2)
-        yHat = self.sigmoid(z3)
+        self.z2 = np.dot(X, self.W1)
+        self.a2 = self.sigmoid(self.z2)
+        self.z3 = np.dot(self.a2, self.W2)
+        yHat = self.sigmoid(self.z3)
         return yHat
 
     def sigmoid(self, z):

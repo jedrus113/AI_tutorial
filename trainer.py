@@ -1,4 +1,3 @@
-from videoSupport import *
 from scipy import optimize
 
 class trainer(object):

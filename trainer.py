@@ -1,3 +1,6 @@
+from scipy import optimize
+
+
 class trainer(object):
     def __init__(self, N):
         # Make Local reference to network:

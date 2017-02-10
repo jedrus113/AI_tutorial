@@ -28,11 +28,17 @@ class Neural_Network(object):
         #Derivative of Sigmoid Fucntion
         return np.exp(-z)/((1+np.exp(-z))**2)
 
-    def constFunctionPrime(self, X, y):
-        #Compute derivative with respect to W1 and W2
-        yhat = self.forward(X)
+    def costFunction(self, X, y):
+        #Compute cost for given X,y use weights already stored in class.
+        self.yHat = self.forward(X)
+        J = 0.5*sum((y-self.yHat)**2)
+        return J
 
-        delta3 = np.multiply(-(y-yhat), self.sigmoidPrime(self.z3))
+    def constFunctionPrime(self, X, y):
+        #Compute derivative with respect to W1 and W2 for given X and y
+        yHat = self.forward(X)
+
+        delta3 = np.multiply(-(y-yHat), self.sigmoidPrime(self.z3))
         dJdW2 = np.dot(self.a2.T, delta3)
 
         delta2 = np.dot(delta3, self.W2.T)*self.sigmoidPrime(self.z2)

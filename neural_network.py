@@ -45,3 +45,22 @@ class Neural_Network(object):
         dJdW1 = np.dot(X.T, delta2)
 
         return dJdW1, dJdW2
+
+    #Helper functions for unteracting with other methofs/classes
+
+    def getParams(self):
+        #Get W1 and W2 Rolled into vector:
+        params = np.concatenate((self.W1.ravel(), self.W2.ravel()))
+        return params
+
+    def setParams(self, params):
+        #Set W1 and W2 using sungle parameter vector:
+        W1_start = 0
+        W1_end = self.hiddenLayerSize*self.inputLayerSize
+        self.W1 = np.reshape(params[W1_start:W1_end], (self.inputLayerSize, self.hiddenLayerSize))
+        W2_end = W1_end + self.hiddenLayerSize*self.outputLayerSize
+        self.W2 = np.reshape(params[W1_end:W2_end], (self.hiddenLayerSize, self.outputLayerSize))
+
+    def computeGradients(self, X, y):
+        dJdW1, dJdW2 = self.costFunctionPrime(X, y):
+            return np.concatenate((dJdW1.ravel(), dJdW2.ravel()))

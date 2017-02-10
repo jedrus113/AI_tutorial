@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class Neural_Network(object):
     def __init__(self):
         # Define Hyperparameters
@@ -87,4 +90,4 @@ def computeNumericalGradient(N, X, y):
     N.setParams(paramsInitial)
 
 
-return numgrad
+    return numgrad

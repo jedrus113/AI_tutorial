@@ -1,3 +1,6 @@
+from videoSupport import *
+from scipy import optimize
+
 class trainer(object):
     def __init__(self, N):
         #Make local reference to Neural Network:

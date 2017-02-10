@@ -12,6 +12,22 @@ class Neural_Network(object):
         self.W1 = np.random.randn(self.inputLayerSize, self.hiddenLayerSize)
         self.W2 = np.random.randn(self.hiddenLayerSize, self.outputLayerSize)
 
+    def forward(self, X):
+        #Propagate inputs though network
+        self.z2 = np.dot(X, self.W1)
+        self.a2 = self.sigmoid(self.z2)
+        self.z3 = np.dot(self.a2, self.W2)
+        yHat = self.sigmoid(self.z3)
+        return yHat
+
+    def sigmoid(self, z):
+        #Apply sigmoid activation function to scalar, vector, or matrix
+        return 1/(1+np.exp(-z))
+
+    def sigmoidPrime(self, z):
+        #Derivative of Sigmoid Fucntion
+        return np.exp(-z)/((1+np.exp(-z))**2)
+
     def constFunctionPrime(self, X, y):
         #Compute derivative with respect to W1 and W2
         yhat = self.forward(X)
@@ -23,19 +39,3 @@ class Neural_Network(object):
         dJdW1 = np.dot(X.T, delta2)
 
         return dJdW1, dJdW2
-
-    def forward(self, X):
-        #Propagate inputs though network
-        self.z2 = np.dot(X, self.W1)
-        self.a2 = self.sigmoid(self.z2)
-        self.z3 = np.dot(self.a2, self.W2)
-        yHat = self.sigmoid(self.z3)
-        return yHat
-
-    def sigmoidPrime(self, z):
-        #Derivative of Sigmoid Fucntion
-        return np.exp(-z)/((1+np.exp(-z))**2)
-
-    def sigmoid(self, z):
-        #Apply sigmoid activation function to scalar, vector, or matrix
-        return 1/(1+np.exp(-z))
